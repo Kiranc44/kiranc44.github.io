@@ -1,0 +1,9 @@
+{
+  "name": "wedding-invite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Animated wedding invitation for Monika and Kiran (static HTML, no build step)",
+  "scripts": {
+    "start": "npx --yes serve . -l 8000"
+  }
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4a0d1a">
+<meta name="description" content="You are invited to celebrate the wedding of Monika and Kiran.">
+<title>Monika &amp; Kiran | Wedding invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Parisienne&family=Pinyon+Script&family=Cinzel:wght@500;600&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bar:#4a0d1a;--ink:#5a1424;--cream:#f7eed9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bar:#1f060c}}
+:root[data-theme="dark"]{--bar:#1f060c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bar);font-family:'Cormorant Garamond',Georgia,serif;color:var(--ink);--s:0}
+body.lock{overflow:hidden;height:100%}
+.stage{position:relative;max-width:440px;margin:0 auto;background:var(--cream);overflow:hidden}
+svg{display:block}
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:#f3d9c6 center bottom/cover;cursor:pointer;outline:none}
+.hero.on{cursor:default}
+.ph{position:absolute;inset:0;background:url(assets/last.jpg) 50% 100%/cover no-repeat;opacity:0;transition:opacity 1.4s}
+.ph.on{opacity:1}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(#f7eed900,var(--cream));pointer-events:none}
+.txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:12svh 40px 0;z-index:3;pointer-events:none;translate:0 calc(var(--s)*-.35px);opacity:calc(1 - var(--s)/480)}
+.sm{font-family:'Cinzel','Cormorant Garamond',Georgia,serif;font-size:1rem;letter-spacing:.38em;text-transform:uppercase;font-weight:600;margin-bottom:14px}
+.dt{font-size:1.05rem;letter-spacing:.3em;margin:6px 0 10px;font-weight:600}
+.nm{font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-size:3.4rem;line-height:1.12;letter-spacing:.04em;color:#6b1426;font-weight:700}
+.amp{font-size:1.6rem;margin:0;font-style:italic;font-weight:600}
+.tg{font-size:1.1rem;margin-top:16px;font-weight:500}
+.inv{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;margin-top:7px;padding-bottom:4px;border-bottom:1px solid #6b142688;font-weight:700}
+.chap,.cel{position:relative;padding:70px 34px 110px;text-align:center;background:var(--cream)}
+.cel{padding:60px 34px 90px}
+.chap{padding-bottom:77%}
+.chap .bg{position:absolute;left:0;right:0;bottom:0;aspect-ratio:3/4;background:url(assets/couple.jpg) 68% 50%/cover no-repeat}
+.chap .bg::before{content:"";position:absolute;inset:0 0 auto 0;height:42%;background:linear-gradient(var(--cream),#f7eed900)}
+.chap h2,.chap p,.chap .orn{position:relative;z-index:1}
+h2{font-family:'Parisienne',cursive;font-weight:400;font-size:2.4rem;line-height:1.2;color:#6b1426}
+.orn{margin:18px auto 22px}
+.chap p,.cel p{font-size:1.2rem;line-height:1.65;max-width:330px;margin:0 auto 14px}
+.big{font-size:1.5rem!important;font-weight:600}
+.btn{display:inline-block;margin-top:14px;padding:12px 26px;border-radius:30px;background:#6b1426;color:#fbefd0;text-decoration:none;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase}
+.btn:focus-visible,.ctl button:focus-visible,.hero:focus-visible{outline:2px solid #d9a21b;outline-offset:3px}
+.cd{margin-top:34px;font-size:1.05rem;font-style:italic}
+
+
+.cor{position:absolute;width:150px;opacity:.9}
+.rv{opacity:0;filter:blur(7px);translate:0 26px;text-shadow:0 10px 0 #6b142630;transition:opacity 1.4s,filter 1.4s,translate 1.4s,text-shadow 1.4s;transition-delay:var(--d,0s)}
+.rv.in{opacity:1;filter:none;translate:0 0;text-shadow:none}
+.hero .rv.in{text-shadow:0 0 16px #fff1d8,0 0 5px #fff1d8aa}
+.ctl{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom,0px));right:max(14px,calc(50% - 206px));z-index:25;display:flex;gap:8px;opacity:0;pointer-events:none;transition:opacity 1s}
+.go .ctl{opacity:1;pointer-events:auto}
+.ctl button{font:600 .72rem 'Cormorant Garamond',serif;letter-spacing:.04em;color:#fbefd0;background:#6b1426;border:0;border-radius:20px;padding:9px 15px;cursor:pointer;box-shadow:0 3px 10px #0004}
+</style>
+</head>
+<body class="lock">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="p8"><ellipse cy="-11" rx="4.5" ry="11"/><ellipse cy="-11" rx="4.5" ry="11" transform="rotate(45)"/><ellipse cy="-11" rx="4.5" ry="11" transform="rotate(90)"/><ellipse cy="-11" rx="4.5" ry="11" transform="rotate(135)"/><ellipse cy="-11" rx="4.5" ry="11" transform="rotate(180)"/><ellipse cy="-11" rx="4.5" ry="11" transform="rotate(225)"/><ellipse cy="-11" rx="4.5" ry="11" transform="rotate(270)"/><ellipse cy="-11" rx="4.5" ry="11" transform="rotate(315)"/><circle r="3"/></g>
+<g id="mg"><circle r="10" fill="#f08a1c"/><circle r="10" fill="none" stroke="#ffb627" stroke-width="7" stroke-dasharray="4 2.3"/><circle r="4" fill="#c4600c"/></g>
+<g id="cl"><ellipse cx="-24" cy="6" rx="12" ry="4" fill="#5e7a3a" transform="rotate(-25 -24 6)"/><ellipse cx="24" cy="8" rx="12" ry="4" fill="#6c8a44" transform="rotate(25 24 8)"/><use href="#mg" x="-14" y="-6"/><use href="#mg" x="10" y="-10"/><use href="#mg" x="-2" y="10"/><use href="#mg" x="22" y="6" transform="scale(.8)"/><circle cx="-26" cy="-4" r="5" fill="#fffaf0"/><circle cx="-30" cy="4" r="4" fill="#fffaf0"/></g>
+</defs></svg>
+
+<div class="stage">
+<section class="hero" id="hero" role="button" tabindex="0" aria-label="Tap the seal to open your invitation" style="background-image:url(assets/poster.jpg)">
+<video id="v" playsinline preload="auto" poster="assets/poster.jpg" src="assets/invite-open.mp4"></video>
+<div class="ph" id="ph"></div>
+<div class="txt">
+<p class="sm rv" style="--d:0s">The wedding of</p>
+
+<h1 class="nm rv" style="--d:.5s">Monika</h1><p class="amp rv" style="--d:.7s">and</p><h1 class="nm rv" style="--d:.9s">Kiran</h1>
+
+
+</div>
+</section>
+
+<section class="chap">
+<svg class="cor" style="left:-30px;top:24px" viewBox="0 0 120 80"><use href="#cl" transform="translate(50 36) scale(1.6)"/></svg>
+<div class="bg" role="img" aria-label="Photo of the couple"></div>
+<h2 class="rv">Our favourite<br>chapter begins.</h2>
+<svg class="orn rv" width="120" height="20" viewBox="0 0 120 20" fill="none" stroke="#b98a2f"><path d="M0 10H46M74 10H120"/><g transform="translate(60 10) scale(.5)"><use href="#p8"/></g></svg>
+<p class="rv" style="--d:.15s">Dear friends and family,</p>
+<p class="rv" style="--d:.3s">With full hearts, we invite you to share in our wedding day. Come for the vows, stay for the laughter, and help us make memories to keep forever.</p>
+</section>
+
+<section class="cel">
+<h2 class="rv">Our celebration<br>begins here.</h2>
+<svg class="orn rv" width="120" height="20" viewBox="0 0 120 20" fill="none" stroke="#b98a2f"><path d="M0 10H46M74 10H120"/><g transform="translate(60 10) scale(.5)"><use href="#p8"/></g></svg>
+<p class="big rv" style="--d:.1s">Friday, 20 November 2026</p>
+<p id="tm" class="rv" style="--d:.2s" hidden></p>
+<p class="rv" style="--d:.3s">Aura | Area 83 Resort</p>
+<a class="btn rv" style="--d:.4s" href="https://www.google.com/maps/search/?api=1&query=Aura+Area+83+Resort" target="_blank" rel="noopener">View on map</a>
+<p class="cd rv" id="cd" style="--d:.5s"></p>
+<p class="rv" style="--d:.6s;margin-top:40px">With love,<br><span style="font-family:'Parisienne',cursive;font-size:1.8rem;color:#6b1426">Monika &amp; Kiran</span></p>
+</section>
+
+</div>
+
+<div class="ctl"><button id="pm" type="button">Pause motion</button><button id="ms" type="button">Pause music</button></div>
+
+<script>
+var TIME="";/* add the muhurtham time here, e.g. "Muhurtham 9:00 AM" */
+(function(){
+var b=document.body,h=document.getElementById('hero'),v=document.getElementById('v'),pm=document.getElementById('pm'),ms=document.getElementById('ms'),started=false,shown=false,ac,mg,mu=false,run=false,buf,want=false;
+if(TIME){var t=document.getElementById('tm');t.textContent=TIME;t.hidden=false}
+var n=Math.ceil((new Date('2026-11-20T00:00:00+05:30')-Date.now())/864e5);
+document.getElementById('cd').textContent=n>1?n+' days to go':n==1?'Tomorrow':n==0?'Today is the day':'';
+var hr=h.querySelectorAll('.rv'),ph=document.getElementById('ph');
+function ctx(){var A=window.AudioContext||window.webkitAudioContext;if(!A||ac)return;ac=new A();mg=ac.createGain();mg.gain.value=0;mg.connect(ac.destination);if(ac.resume)ac.resume();fetch('assets/invite-loop.mp4').then(function(r){return r.arrayBuffer()}).then(function(d){return new Promise(function(ok,no){ac.decodeAudioData(d,ok,no)})}).then(function(x){buf=x;if(want)play()}).catch(function(){})}
+function play(){if(!buf||!ac)return;var s=ac.createBufferSource();s.buffer=buf;s.loop=true;s.connect(mg);s.start();want=false;mg.gain.setTargetAtTime(mu?0:.9,ac.currentTime,.8)}
+function begin(){if(run||!ac)return;run=true;want=true;play()}
+function showText(){ph.classList.add('on');if(shown)return;shown=true;hr.forEach(function(e){e.classList.add('in')})}
+function done(){begin();showText();b.classList.remove('lock');pm.textContent='Replay'}
+function start(){
+ if(started)return;started=true;ctx();h.classList.add('on');b.classList.add('go');
+ var p=v.play();if(p&&p.catch)p.catch(function(){mu=true;v.muted=true;ms.textContent='Play music';v.play().catch(function(){setTimeout(done,500)})});
+ setTimeout(function(){if(!v.currentTime)done()},4000)}
+h.addEventListener('click',start);
+h.addEventListener('keydown',function(e){if(e.key=='Enter'||e.key==' '){e.preventDefault();start()}});
+v.addEventListener('timeupdate',function(){if(v.currentTime>=4.8)ph.classList.add('on');if(v.currentTime>=5.9)showText();if(v.currentTime>=5.5)begin()});
+v.addEventListener('ended',done);
+pm.onclick=function(){
+ if(v.ended){shown=false;ph.classList.remove('on');hr.forEach(function(e){e.classList.remove('in')});v.currentTime=0;b.classList.add('lock');pm.textContent='Pause motion';v.play();return}
+ if(v.paused){v.play();pm.textContent='Pause motion'}else{v.pause();pm.textContent='Play motion'}};
+ms.onclick=function(){mu=!mu;v.muted=mu;if(mg)mg.gain.setTargetAtTime(mu?0:.9,ac.currentTime,.3);ms.textContent=mu?'Play music':'Pause music'};
+document.addEventListener('visibilitychange',function(){if(!ac)return;if(document.hidden)ac.suspend();else ac.resume()});
+addEventListener('pagehide',function(){if(ac)ac.suspend()});
+var io='IntersectionObserver'in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35}):null;
+document.querySelectorAll('.chap .rv,.cel .rv').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+var tk=false;addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){b.style.setProperty('--s',Math.round(scrollY));tk=false})},{passive:true});
+})();
+</script>
+</body>
+</html>
