@@ -44,6 +44,20 @@ h2{font-family:'Parisienne',cursive;font-weight:400;font-size:2.4rem;line-height
 .btn{display:inline-block;margin-top:14px;padding:12px 26px;border-radius:30px;background:#6b1426;color:#fbefd0;text-decoration:none;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase}
 .btn:focus-visible,.ctl button:focus-visible,.hero:focus-visible{outline:2px solid #d9a21b;outline-offset:3px}
 .cd{margin-top:34px;font-size:1.05rem;font-style:italic}
+/* >>> ADDED: scroll hint + scratch card styles */
+.hint{position:absolute;left:0;right:0;bottom:62px;z-index:4;display:flex;justify-content:center;pointer-events:none;opacity:calc(1 - var(--s)/140)}
+.hint .rv{display:flex;flex-direction:column;align-items:center;gap:0;padding:8px 18px 6px;border-radius:22px;background:#f7eed9d9;font-family:'Cinzel',Georgia,serif;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;color:#6b1426}
+.chv{display:block;width:10px;height:10px;margin-top:3px;border-right:2px solid #6b1426;border-bottom:2px solid #6b1426;rotate:45deg;animation:bob 1.6s ease-in-out infinite}
+.chv+.chv{margin-top:-5px;opacity:.5;animation-delay:.25s}
+@keyframes bob{0%,100%{translate:0 -3px}50%{translate:0 3px}}
+.cel .sch{font-family:'Cinzel',Georgia,serif;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;margin:0 auto 12px}
+.scr{position:relative;width:min(320px,100%);height:100px;margin:0 auto 20px;border:1px solid #b98a2f;border-radius:14px;background:linear-gradient(#fff9e6,#f6e7bd);overflow:hidden;box-shadow:0 6px 18px #6b142622}
+.dtx{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 14px;font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:1.15rem;line-height:1.45;letter-spacing:.06em;color:#6b1426}
+.scr canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;transition:opacity .9s}
+.scr canvas.off{opacity:0;pointer-events:none}
+.scr.done .dtx{animation:pop .9s ease-out}
+@keyframes pop{0%{scale:.85}60%{scale:1.08}100%{scale:1}}
+/* <<< END ADDED styles */
 
 
 .cor{position:absolute;width:150px;opacity:.9}
@@ -66,10 +80,13 @@ h2{font-family:'Parisienne',cursive;font-weight:400;font-size:2.4rem;line-height
 <section class="hero" id="hero" role="button" tabindex="0" aria-label="Tap the seal to open your invitation" style="background-image:url(assets/poster.jpg)">
 <video id="v" playsinline preload="auto" poster="assets/poster.jpg" src="assets/invite-open.mp4"></video>
 <div class="ph" id="ph"></div>
+<!-- >>> ADDED: scroll hint -->
+<div class="hint" aria-hidden="true"><div class="rv" style="--d:1.8s"><span>Scroll down</span><i class="chv"></i><i class="chv"></i></div></div>
+<!-- <<< END scroll hint -->
 <div class="txt">
 <p class="sm rv" style="--d:0s">The wedding of</p>
 
-<h1 class="nm rv" style="--d:.5s">Monika</h1><p class="amp rv" style="--d:.7s">and</p><h1 class="nm rv" style="--d:.9s">Kiran</h1>
+<h1 class="nm rv" style="--d:.5s">Monika</h1><p class="amp rv" style="--d:.7s">&amp;</p><h1 class="nm rv" style="--d:.9s">Kiran</h1>
 
 
 </div>
@@ -87,7 +104,10 @@ h2{font-family:'Parisienne',cursive;font-weight:400;font-size:2.4rem;line-height
 <section class="cel">
 <h2 class="rv">Our celebration<br>begins here.</h2>
 <svg class="orn rv" width="120" height="20" viewBox="0 0 120 20" fill="none" stroke="#b98a2f"><path d="M0 10H46M74 10H120"/><g transform="translate(60 10) scale(.5)"><use href="#p8"/></g></svg>
-<p class="big rv" style="--d:.1s">Friday, 20 November 2026</p>
+<!-- >>> ADDED: scratch card (replaces the plain date line) -->
+<p class="sch rv" id="sch" style="--d:.05s">Scratch to reveal the date</p>
+<div class="scr rv" id="scr" style="--d:.1s"><div class="dtx"><span>Friday<br>20 November 2026</span></div><canvas id="cv" tabindex="0" role="button" aria-label="Scratch to reveal the wedding date. Press Enter to reveal."></canvas></div>
+<!-- <<< END scratch card -->
 <p id="tm" class="rv" style="--d:.2s" hidden></p>
 <p class="rv" style="--d:.3s">Aura | Area 83 Resort</p>
 <a class="btn rv" style="--d:.4s" href="https://www.google.com/maps/search/?api=1&query=Aura+Area+83+Resort" target="_blank" rel="noopener">View on map</a>
@@ -97,12 +117,12 @@ h2{font-family:'Parisienne',cursive;font-weight:400;font-size:2.4rem;line-height
 
 </div>
 
-<div class="ctl"><button id="pm" type="button">Pause motion</button><button id="ms" type="button">Pause music</button></div>
+<div class="ctl"><button id="ms" type="button">Pause music</button></div>
 
 <script>
 var TIME="";/* add the muhurtham time here, e.g. "Muhurtham 9:00 AM" */
 (function(){
-var b=document.body,h=document.getElementById('hero'),v=document.getElementById('v'),pm=document.getElementById('pm'),ms=document.getElementById('ms'),started=false,shown=false,ac,mg,mu=false,run=false,buf,want=false;
+var b=document.body,h=document.getElementById('hero'),v=document.getElementById('v'),ms=document.getElementById('ms'),started=false,shown=false,ac,mg,mu=false,run=false,buf,want=false;
 if(TIME){var t=document.getElementById('tm');t.textContent=TIME;t.hidden=false}
 var n=Math.ceil((new Date('2026-11-20T00:00:00+05:30')-Date.now())/864e5);
 document.getElementById('cd').textContent=n>1?n+' days to go':n==1?'Tomorrow':n==0?'Today is the day':'';
@@ -111,7 +131,7 @@ function ctx(){var A=window.AudioContext||window.webkitAudioContext;if(!A||ac)re
 function play(){if(!buf||!ac)return;var s=ac.createBufferSource();s.buffer=buf;s.loop=true;s.connect(mg);s.start();want=false;mg.gain.setTargetAtTime(mu?0:.9,ac.currentTime,.8)}
 function begin(){if(run||!ac)return;run=true;want=true;play()}
 function showText(){ph.classList.add('on');if(shown)return;shown=true;hr.forEach(function(e){e.classList.add('in')})}
-function done(){begin();showText();b.classList.remove('lock');pm.textContent='Replay'}
+function done(){begin();showText();b.classList.remove('lock')}
 function start(){
  if(started)return;started=true;ctx();h.classList.add('on');b.classList.add('go');
  var p=v.play();if(p&&p.catch)p.catch(function(){mu=true;v.muted=true;ms.textContent='Play music';v.play().catch(function(){setTimeout(done,500)})});
@@ -120,14 +140,42 @@ h.addEventListener('click',start);
 h.addEventListener('keydown',function(e){if(e.key=='Enter'||e.key==' '){e.preventDefault();start()}});
 v.addEventListener('timeupdate',function(){if(v.currentTime>=4.8)ph.classList.add('on');if(v.currentTime>=5.9)showText();if(v.currentTime>=5.5)begin()});
 v.addEventListener('ended',done);
-pm.onclick=function(){
- if(v.ended){shown=false;ph.classList.remove('on');hr.forEach(function(e){e.classList.remove('in')});v.currentTime=0;b.classList.add('lock');pm.textContent='Pause motion';v.play();return}
- if(v.paused){v.play();pm.textContent='Pause motion'}else{v.pause();pm.textContent='Play motion'}};
 ms.onclick=function(){mu=!mu;v.muted=mu;if(mg)mg.gain.setTargetAtTime(mu?0:.9,ac.currentTime,.3);ms.textContent=mu?'Play music':'Pause music'};
 document.addEventListener('visibilitychange',function(){if(!ac)return;if(document.hidden)ac.suspend();else ac.resume()});
 addEventListener('pagehide',function(){if(ac)ac.suspend()});
 var io='IntersectionObserver'in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35}):null;
 document.querySelectorAll('.chap .rv,.cel .rv').forEach(function(el){io?io.observe(el):el.classList.add('in')});
+/* >>> ADDED: scratch card + celebration */
+var cv=document.getElementById('cv'),scr=document.getElementById('scr'),sch=document.getElementById('sch'),sx,pd=false,fin=false,touched=false,last,mv=0;
+function foil(){if(touched)return;var d=Math.min(devicePixelRatio||1,2),w=scr.clientWidth,hh=scr.clientHeight;cv.width=w*d;cv.height=hh*d;sx=cv.getContext('2d');sx.scale(d,d);var g=sx.createLinearGradient(0,0,w,hh);g.addColorStop(0,'#c99a2e');g.addColorStop(.35,'#f6e08a');g.addColorStop(.6,'#d9a21b');g.addColorStop(1,'#a87a1c');sx.fillStyle=g;sx.fillRect(0,0,w,hh);for(var i=0;i<180;i++){sx.fillStyle='rgba(255,255,255,'+Math.random()*.35+')';sx.fillRect(Math.random()*w,Math.random()*hh,1.6,1.6)}sx.strokeStyle='rgba(107,20,38,.35)';sx.lineWidth=1;sx.strokeRect(6,6,w-12,hh-12);sx.fillStyle='#6b1426';sx.textAlign='center';sx.textBaseline='middle';sx.font='600 13px Cinzel,Georgia,serif';sx.fillText('SCRATCH HERE',w/2,hh/2-10);sx.font='italic 600 16px Cormorant Garamond,Georgia,serif';sx.fillText('to reveal the wedding date',w/2,hh/2+12)}
+foil();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(foil);addEventListener('resize',foil);
+function pt(e){var r=cv.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]}
+function dot(p){sx.globalCompositeOperation='destination-out';sx.beginPath();sx.arc(p[0],p[1],18,0,6.3);sx.fill()}
+function chk(){if(fin)return;var d=sx.getImageData(0,0,cv.width,cv.height).data,c=0,n=0;for(var i=3;i<d.length;i+=64){n++;if(d[i]<40)c++}if(c/n>.5)reveal()}
+function stop(){pd=false;chk()}
+cv.addEventListener('pointerdown',function(e){if(fin)return;touched=true;pd=true;try{cv.setPointerCapture(e.pointerId)}catch(x){}last=pt(e);dot(last);e.preventDefault()});
+cv.addEventListener('pointermove',function(e){if(!pd||fin)return;var p=pt(e);sx.globalCompositeOperation='destination-out';sx.lineWidth=36;sx.lineCap='round';sx.beginPath();sx.moveTo(last[0],last[1]);sx.lineTo(p[0],p[1]);sx.stroke();last=p;if(++mv%6==0)chk()});
+cv.addEventListener('pointerup',stop);cv.addEventListener('pointercancel',stop);
+cv.addEventListener('keydown',function(e){if(e.key=='Enter'||e.key==' '){e.preventDefault();reveal()}});
+function reveal(){if(fin)return;fin=true;touched=true;cv.classList.add('off');scr.classList.add('done');sch.textContent='Save the date';if(navigator.vibrate)navigator.vibrate(40);celebrate()}
+function celebrate(){
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ var c=document.createElement('canvas');c.style.cssText='position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+ var d=Math.min(devicePixelRatio||1,2),W=innerWidth,H=innerHeight;c.width=W*d;c.height=H*d;var x=c.getContext('2d');x.scale(d,d);
+ var r=scr.getBoundingClientRect(),ox=r.left+r.width/2,oy=r.top+r.height/2,cols=['#6b1426','#d9a21b','#f08a1c','#ffb627','#fffaf0','#e8a3b5','#8e2438'],ps=[],t0=performance.now();
+ function burst(n,ang){for(var i=0;i<n;i++){var a=-Math.PI/2+(Math.random()-.5)*ang,s=7+Math.random()*9;ps.push({x:ox,y:oy,vx:Math.cos(a)*s,vy:Math.sin(a)*s,w:5+Math.random()*6,h:3+Math.random()*5,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[i%cols.length],t:0,life:140+Math.random()*80,k:Math.random()<.35?1:0,pet:0})}}
+ burst(110,2.6);setTimeout(function(){burst(70,3.2)},450);
+ (function f(now){
+  x.clearRect(0,0,W,H);
+  if(now-t0<4200&&Math.random()<.5)ps.push({x:Math.random()*W,y:-12,vx:(Math.random()-.5)*1.2,vy:1.2+Math.random()*1.6,w:9,h:6,r:Math.random()*6,vr:(Math.random()-.5)*.1,c:Math.random()<.5?'#f08a1c':'#ffb627',t:0,life:600,k:1,pet:1});
+  for(var i=ps.length-1;i>=0;i--){var p=ps[i];p.t++;if(!p.pet){p.vy+=.28;p.vx*=.985}p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+   if(p.t>p.life||p.y>H+20){ps.splice(i,1);continue}
+   x.save();x.translate(p.x,p.y);x.rotate(p.r);x.globalAlpha=Math.max(0,Math.min(1,(p.life-p.t)/40));x.fillStyle=p.c;
+   if(p.k){x.beginPath();x.ellipse(0,0,p.w/1.6,p.h/1.6,0,0,6.3);x.fill()}else x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore()}
+  if(ps.length||now-t0<4200)requestAnimationFrame(f);else c.remove()
+ })(t0);
+}
+/* <<< END scratch card + celebration */
 var tk=false;addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){b.style.setProperty('--s',Math.round(scrollY));tk=false})},{passive:true});
 })();
 </script>
